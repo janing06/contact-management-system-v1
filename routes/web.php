@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Contact\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,12 @@ Route::middleware('auth')->group(function () {
 	// users
 	Route::resource('users', UserController::class);
 
+	// contacts
+
+	Route::prefix('contacts')->group(function(){
+		Route::get('/table', [ContactController::class, 'table'])->name('table');
+	});
+	Route::resource('contacts', ContactController::class);
 });
 
 require __DIR__.'/auth.php';
